@@ -10,6 +10,8 @@ public class Theatre {
     private int seatsInRow;
     private NavigableSet<Seat> seats = new TreeSet<>();
 
+
+
     public Theatre(String theatreName, int numRows, int totalSeats) {
         this.theatreName = theatreName;
         this.seatsInRow = (int) totalSeats / numRows;
@@ -22,9 +24,11 @@ public class Theatre {
             }
         }
 
+
+
     }
 
-    class Seat {
+    class Seat implements Comparable<Seat>{
 
         private String seatNumberStr;
         private boolean isReserved = false;
@@ -32,6 +36,11 @@ public class Theatre {
         public Seat(char row, int seatNumber) {
             // Format the seatNumber to always be three digits
             this.seatNumberStr = String.format("%c%03d", row, seatNumber);
+        }
+
+        @Override
+        public int compareTo(Seat o) {
+            return this.seatNumberStr.compareTo(o.seatNumberStr);
         }
     }
 
@@ -41,6 +50,7 @@ public class Theatre {
         // Each seat has a string - a seat number - in the format "A005", where A is the row number, and 005 is seat
         // %number. Zero padded up to three digits.
         // Seat also has isReserved boolean
+
 
 
 
