@@ -10,15 +10,24 @@ public class Theatre {
     private int seatsInRow;
     private NavigableSet<Seat> seats = new TreeSet<>();
 
-    public Theatre(String theatreName, int seatsInRow) {
+    public Theatre(String theatreName, int numRows, int totalSeats) {
         this.theatreName = theatreName;
-        this.seatsInRow = seatsInRow;
+        this.seatsInRow = (int) totalSeats / numRows;
+
+        for (int row = 1; row <= numRows; row++) {
+            for (int seatNum = 1; seatNum <= seatsInRow; seatNum++) {
+                char seatLetter = (char) ('A' + seatNum - 1);
+                Seat seat = new Seat(seatLetter, seatNum);
+                seats.add(seat);
+            }
+        }
+
     }
 
     class Seat {
 
         private String seatNumberStr;
-        private boolean isReserved;
+        private boolean isReserved = false;
 
         public Seat(char row, int seatNumber) {
             // Format the seatNumber to always be three digits
