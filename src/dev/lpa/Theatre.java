@@ -17,6 +17,13 @@ public class Theatre {
 
     class Seat {
 
+        private String seatNumberStr;
+        private boolean isReserved;
+
+        public Seat(char row, int seatNumber) {
+            // Format the seatNumber to always be three digits
+            this.seatNumberStr = String.format("%c%03d", row, seatNumber);
+        }
     }
 
         // has set of seats
